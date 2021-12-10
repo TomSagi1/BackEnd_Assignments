@@ -13,7 +13,7 @@ def about_page():
 
 @app.route('/catalog')
 def catalog_page():
-    return 'This will be a catalog page :)'
+    return 'This will be a catalog page '
 
 @app.route('/transfer')
 def urldirect_page():
