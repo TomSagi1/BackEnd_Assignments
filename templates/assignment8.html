@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+
+{% block title %}Assignment8{% endblock %}
+
+{% block tohen %}
+    {{ super() }}
+    <b>My name is: {{ name | default('Unknown', true) | upper() }} </b> <br>
+        {% if name %}
+            <h3>My hobbies are:</h3>
+            <ol>
+                {% for hobby in hobbies %}
+                <li>{{ hobby }}</li>
+            </ol>
+        {% elif %}
+            <h3>Person is unknown. can't mention hobbies</h3>
+        {% endif %}
+{% endblock %}
