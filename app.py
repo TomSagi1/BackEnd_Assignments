@@ -26,11 +26,11 @@ def assignment8():
 def assignment9():
     search = ''
     user_name = ''
-    users = {{'user_name': 'tomsag', 'email': 'tomsag@post.bgu.ac.il'},
-             {'user_name': 'superman', 'email': 'superman121@gmail.com'},
-             {'user_name': 'lebronJ', 'email': 'LebronJames@gmail.com'},
-             {'user_name': 'RogerF', 'email': 'rogerf@gmail.com'},
-             {'user_name': 'TheRock', 'email': 'rocking1993@gmail.com'}
+    users = {'user1':{'user_name': 'tomsag', 'email': 'tomsag@post.bgu.ac.il'},
+             'user2':{'user_name': 'superman', 'email': 'superman121@gmail.com'},
+             'user3':{'user_name': 'lebronJ', 'email': 'LebronJames@gmail.com'},
+             'user4':{'user_name': 'RogerF', 'email': 'rogerf@gmail.com'},
+             'user5':{'user_name': 'TheRock', 'email': 'rocking1993@gmail.com'}
              }
     method = request.method
     if method == 'GET':
