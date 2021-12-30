@@ -2,48 +2,44 @@
 
 {% block title %}Assignment9{% endblock %}
 {% block tohen %}
+        <h1>Register</h1>
+        {% if session.user_name %}
+            <h3>Hey there {{ session.user_name }}</h3>
+            <form action="/logout">
+                <input type="submit" value="Log out">
+            </form>
+        {% else %}
+            <form action="/assignment9" method="POST">
+                Username: <input name="user_name" type="text">
+                <br><br>
+                Password: <input name="password" type="password">
+                <br><br>
+                <input type="submit">
+            </form>
+        {% endif %}
 
-        <h3>Search User</h3>
-        <form action="/assignment9" method="GET" >
-            <label for="search">Search:</label>
-            <input type="text" user_name="searchIn">
-            <button type="submit">Submit</button>
-        </form>
-           {% if search %}
-           <h3>Results:</h3>
-           {% for index in users %}
-               {% if index.user_name == search or index.email == search %}
-                   <h3>UserName:{{ index.user_name }} Email: {{ index.email }}</h3>
-               {% endif %}
-           {% endfor %}
-           {% endif %}
-           {% if search =='' %}
-                <h3>Results:</h3>
-                {% for user in users %}
-                    <h3>Username:{{ user.user_name}}</h3>
-                    <h3>Email:{{ user.email }}</h3>
-                {% endfor %}
-           {% endif %}
-
-
-    {% if session.get('logged_in') %}
-        <h2>Hello {{ session.get('user_name') }}</h2>
-        <form action="/logout" method="GET">
-            <button type="submit">Log out</button>
+         <h1>User Search</h1>
+        <form action="/assignment9" method="GET">
+            Username: <input name="user_name" type="text">
+            <br><br>
+            <input type="submit">
         </form>
 
-    {% else %}
-        <h2>Hi guest!</h2>
-        <h3>Registration:</h3>
-        <form action="/assignment9" method="POST">
-            <label for="name">Username:</label>
-            <input user_name="user_name" type="text"  required>
-            <label for="password">Password:</label>
-            <input name="password" type="password" required>
-            <button type="submit">Enter</button>
-        </form>
+        {% if user_name %}
+            <h2>User:</h2>
+            <p> Username: {{ user_name }} <br>
+                email: {{ user_email }}
+            </p>
+        {% endif %}
 
-    {% endif %}
+        {% if list %}
+        <h2>Users:</h2>
+            {%  for key, value in list.items() %}
+            <li>
+                {{ key }}: <b>{{ value.get('user_name') }}</b> ({{ value.get('email') }})
+            </li>
+            {% endfor %}
+        {% endif %}
 
 
 {% endblock %}
