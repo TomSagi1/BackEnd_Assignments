@@ -1,5 +1,6 @@
 from flask import Flask, redirect, url_for, render_template
-from flask import request, session
+from flask import request, session, Blueprint
+
 
 app = Flask(__name__)
 app.secret_key = '123'
@@ -52,6 +53,12 @@ def logout():
     return render_template('assignment9.html')
 
 
+#  assignment10
+from pages.assignment10.assignment10 import assignment10
+
+app.register_blueprint(assignment10)
+
+
 @app.route('/about')
 def about_page():
     return redirect('/')
@@ -59,3 +66,4 @@ def about_page():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
