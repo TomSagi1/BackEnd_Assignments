@@ -23,3 +23,16 @@ def db_Assignment10(query, query_type: str):
     connection.close()
     cursor.close()
     return return_value
+
+
+def json_query(query):
+    connection = mysql.connector.connect(host='localhost',
+                                         user='root',
+                                         passwd='root',
+                                         database='assignment10')
+    cursor = connection.cursor(dictionary=True)
+    cursor.execute(query)
+    res = cursor.fetchall()
+    connection.close()
+    cursor.close()
+    return res
