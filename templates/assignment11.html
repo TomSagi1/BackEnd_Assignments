@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+
+{% block title %}Assignment9{% endblock %}
+{% block tohen %}
+        <script src="../static/assignment11.js"></script>
+
+            <h2> Frontend </h2>
+        <input type="number" name="number" id="number"/>
+        <button onclick="myFunction()">Click here</button>
+
+        <h2>  Backend </h2>
+        <form action="/assignment11/outer_source" method="get">
+            <input type="number" name="number" id="b_number">
+            <input type="submit" value="Click here">
+        </form>
+
+        <!-- output-->
+        <br><br>
+        <main>
+            {% if user %}
+                <img src="{{ user.avatar }}" alt="Profile Pic"/>
+                <div>
+                    <span>{{ user.first_name + " " + user.last_name }}</span>
+                    <br>
+                    <a href="mailto:{{ user.email }}">Send Email!</a>
+                    <br><br>
+                </div>
+            {% endif %}
+        </main>
+
+
+{% endblock %}
