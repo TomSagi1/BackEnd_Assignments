@@ -1,6 +1,8 @@
-from flask import Flask, redirect, url_for, render_template
-from flask import request, session, Blueprint
-
+import json
+import requests
+from flask import Flask, redirect, render_template
+from flask import request, session
+from db import json_query
 
 app = Flask(__name__)
 app.secret_key = '123'
@@ -59,6 +61,25 @@ from pages.assignment10.assignment10 import assignment10
 app.register_blueprint(assignment10)
 
 
+#  assignment 11
+
+@app.route("/assignment11/users")
+def assignment11():
+    select_query = "select * from users"
+    query_res = json_query(query=select_query)
+    return json.dumps(query_res)
+
+
+@app.route("/assignment11/outer_source", methods=['GET'])
+def assignment11_outer_source():
+    if 'num' in request.args:
+        num = request.args['num']
+        res = requests.get(url=f"https://reqres.in/api/users/{num}")
+        res = res.json()
+        return render_template('assignment11.html', user=res['data'])
+    return render_template('assignment11.html')
+
+
 @app.route('/about')
 def about_page():
     return redirect('/')
@@ -66,4 +87,3 @@ def about_page():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
