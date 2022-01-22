@@ -80,6 +80,16 @@ def assignment11_outer_source():
     return render_template('assignment11.html')
 
 
+# assignment 12
+@app.route('/assignment12/restapi_users', defaults={'user_id': 1})
+@app.route("/assignment12/restapi_users/<int:user_id>")
+def assignment12(user_id):
+    query = 'select * from users where id=%s' % user_id
+    query_res = json_query(query=query)
+    if len(query_res) == 0:
+        query_res = [{'Condition': 'Unsuccessful', 'Message': 'user was not found'}]
+    return json.dumps(query_res)
+
 @app.route('/about')
 def about_page():
     return redirect('/')
